@@ -21,7 +21,17 @@ public class MainActivity extends AppCompatActivity {
         // 웹뷰 시작
         mWebView = (WebView) findViewById(R.id.webView);
 
-        mWebView.setWebViewClient(new WebViewClient()); // 클릭시 새창 안뜨게
+//        mWebView.setWebViewClient(new WebViewClient()); // 클릭시 새창 안뜨게
+
+        mWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                String javaScript = "javascript:(function() { document.getElementById('footer-placeholder').remove();})()";
+                mWebView.loadUrl(javaScript);
+            }
+        });
+
         mWebSettings = mWebView.getSettings(); //세부 세팅 등록
         mWebSettings.setJavaScriptEnabled(true); // 웹페이지 자바스클비트 허용 여부
         mWebSettings.setSupportMultipleWindows(false); // 새창 띄우기 허용 여부
