@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().hide();   // title bar hide
+
         // 웹뷰 시작
         mWebView = (WebView) findViewById(R.id.webView);
 
